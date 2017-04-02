@@ -1,7 +1,8 @@
 ---
 
 # Provision non-default groups
-- group:
+- name: "Create {{ item.key }} group"
+  group:
     gid: "{{ item.key }}"
     name: "{{ item.value.gid}}"
     state: present

@@ -1,0 +1,8 @@
+---
+
+# Provision non-default groups
+- group:
+    gid: "{{ item.key }}"
+    name: "{{ item.value.gid}}"
+    state: present
+  with_dict: "{{ local_group }}"

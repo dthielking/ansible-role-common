@@ -10,3 +10,22 @@
 # ans installation of systemtools
 - name: Include upgrade and installation task
   include: setup_packages.yaml
+
+# Provision of local groups
+- name: Include provision of local group
+  include: provision_group.yaml
+  vars:
+    local_groups:
+      home:
+        gid: 1000
+
+# Provision of local users
+- name: Include provision of local users
+  include: provision_user.yaml
+  vars:
+    local_users:
+      - username: ansible
+        mgmt: True
+      - username: cvonessen
+      - username: thielking
+        mgmt: True

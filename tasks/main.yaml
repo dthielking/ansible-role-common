@@ -1,20 +1,12 @@
 ---
+
 # This role is the main provision role for each server
 
 # Include default variables
 - name: Include default variables
   include_vars: packages.yaml
 
-# Updated all servers
-- name: Updating servers
-  apt:
-    autoremove: True
-    update_cache: True
-    upgrade: dist
-
-- name: Install common systemtools
-  apt:
-    update_cache: True
-    name: "{{ item }}"
-    state: latest
-  with_items: "{{ packages }}"
+# Include update and upgrade task
+# ans installation of systemtools
+- name: Include upgrade and installation task
+  include: setup_packages.yaml

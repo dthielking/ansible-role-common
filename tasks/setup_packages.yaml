@@ -1,0 +1,16 @@
+---
+
+# Updated all servers
+- name: Updating servers
+  apt:
+    autoremove: True
+    update_cache: True
+    upgrade: dist
+
+# Install common systemtools
+- name: Install common systemtools
+  apt:
+    update_cache: True
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ packages }}"

@@ -9,7 +9,7 @@ packages:
   - htop
   - iftop
   - iotop
-  - pbzib2
+  - pbzip2
   - pigz
   - powertop
   - rsync

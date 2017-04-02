@@ -1,0 +1,19 @@
+---
+# Default packages
+packages:
+  - bash-completion
+  - curl
+  - git
+  - hddtemp
+  - hdparm
+  - htop
+  - iftop
+  - iotop
+  - pbzib2
+  - pigz
+  - powertop
+  - rsync
+  - smartmontools
+  - vim
+  - wget
+  - zsh

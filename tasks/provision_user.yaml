@@ -1,28 +1,11 @@
 ---
-
-# Provision user
-- name: "Provision user {{ local_user }}"
+- name: Provision local users
   user:
     append: True
     comment: Normal user
     createhome: True
-    groups:
-      - home
-    name: "{{ item }}"
+    groups: "{{ item.value.groups  }}"
+    name: "{{ item.key }}"
     shell: /bin/zsh
     state: present
   with_dict: "{{ local_users }}"
-  when: "{{ local_users.username }} != ansible"
-
-- name: "Provision {{ local_user }}"
-  user:
-    append: True
-    comment: Management user
-    createhome: True
-    groups:
-      - sudo
-    name: "{{ local_users.username }}"
-    shell: /bin/zsh
-    state: present
-  with_dict: "{{ local_users }}"
-  when: "{{ local_users.mgmt | default('False') }} == True"

@@ -3,7 +3,7 @@
 # Provision non-default groups
 - name: "Create {{ item.key }} group"
   group:
-    gid: "{{ item.key }}"
-    name: "{{ item.value.gid}}"
+    gid: "{{ item.value.gid }}"
+    name: "{{ item.key }}"
     state: present
-  with_dict: "{{ local_group }}"
+  with_dict: "{{ local_groups }}"

@@ -5,27 +5,37 @@
 # Include default variables
 - name: Include default variables
   include_vars: packages.yaml
+  become: True
 
 # Include update and upgrade task
 # ans installation of systemtools
 - name: Include upgrade and installation task
   include: setup_packages.yaml
+  become: True
 
 # Provision of local groups
 - name: Include provision of local group
   include: provision_group.yaml
+  become: True
   vars:
     local_groups:
       home:
-        gid: 1000
+        gid: 5000
 
 # Provision of local users
 - name: Include provision of local users
   include: provision_user.yaml
+  become: True
   vars:
     local_users:
-      - username: ansible
+      ansible:
+        uid: 10000
         mgmt: True
-      - username: cvonessen
-      - username: thielking
+        groups: "sudo"
+      cvonessen:
+        uid: 10001
+        groups: "home"
+      thielking:
+        uid: 10002
+        groups: "home,sudo"
         mgmt: True

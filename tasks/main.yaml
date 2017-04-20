@@ -17,25 +17,8 @@
 - name: Include provision of local group
   include: provision_group.yaml
   become: True
-  vars:
-    local_groups:
-      home:
-        gid: 5000
 
 # Provision of local users
 - name: Include provision of local users
   include: provision_user.yaml
   become: True
-  vars:
-    local_users:
-      ansible:
-        uid: 10000
-        mgmt: True
-        groups: "sudo"
-      cvonessen:
-        uid: 10001
-        groups: "home"
-      thielking:
-        uid: 10002
-        groups: "home,sudo"
-        mgmt: True

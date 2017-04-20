@@ -6,6 +6,7 @@
     autoremove: True
     update_cache: True
     upgrade: dist
+  when: update_apt
 
 # Install common systemtools
 - name: Install common systemtools
@@ -14,3 +15,4 @@
     name: "{{ item }}"
     state: latest
   with_items: "{{ packages }}"
+  when: update_apt

@@ -10,15 +10,11 @@
     state: present
   with_dict: "{{ local_users }}"
 
-- name: Debug
-  debug: 
-    msg: "item.value.git_repo"
-  with_dict: "{{ local_users }}"
-
 - name: Load local environment for users from github.com
   git:
     dest: "/home/{{ item.key }}/dots"
     repo: "{{ item.value.git_repo }}"
   become_user: "{{ item.key }}"
+  become: True
   when: item.value.git_repo is defined
   with_dict: "{{ local_users }}"

@@ -14,11 +14,15 @@ roles:
 To make sure that all things getting done it is recommended, to include `vars_files` to your play. This gives you the possibility to use a different file with all play variables to set sufficient data and seperate logic and data.
 
 There are some optional Variables that could be used to get things done:
+- provisioned    [scalar]
 - packages       [list]
 - local_users    [dictionary]
 - local_groups   [dictionary]
 
 # Variable usage
+
+Set server as provisioned or not
+`provisioned: True|False`
 
 Install default packages
 ```

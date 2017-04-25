@@ -1,7 +1,7 @@
 ---
 
 # Provision non-default groups
-- name: "Create {{ item.key }} group"
+- name: "common: Create groups"
   group:
     gid: "{{ item.value.gid }}"
     name: "{{ item.key }}"

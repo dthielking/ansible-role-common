@@ -9,10 +9,12 @@ __packages:
   - htop
   - iftop
   - iotop
+  - lsof
   - pbzip2
   - pigz
   - powertop
   - rsync
+  - smartmontools
   - vim
   - wget
   - zsh

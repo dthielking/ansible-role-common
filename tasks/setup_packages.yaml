@@ -14,5 +14,5 @@
     update_cache: True
     name: "{{ item }}"
     state: latest
-  with_items: "{{ packages }}"
+  with_items: "{{ __common_packages|list + common_packages|list }}"
   when: provisioned

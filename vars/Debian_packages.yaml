@@ -1,6 +1,6 @@
 ---
 # Default packages
-__packages:
+__common_packages:
   - bash-completion
   - curl
   - git

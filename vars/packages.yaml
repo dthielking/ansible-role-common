@@ -1,6 +1,6 @@
 ---
 # Default packages
-packages:
+__packages:
   - bash-completion
   - curl
   - git
@@ -13,7 +13,6 @@ packages:
   - pigz
   - powertop
   - rsync
-  - smartmontools
   - vim
   - wget
   - zsh

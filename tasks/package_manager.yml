@@ -1,0 +1,50 @@
+---
+- name: Update pacman cache
+  pacman:
+    update_cache: true
+  when:
+  - common_update_cache
+  - ansible_os_family == "Archlinux"
+
+- name: Update apt cache
+  apt:
+    cache_valid_time: 3600
+    update_cache: True
+  when:
+  - common_update_cache
+  - ansible_os_family == "Debian"
+
+- name: Upgrade Archlinux
+  pacman:
+    upgrade: True
+  when:
+    - common_upgrade_system
+    - ansible_os_family == "Archlinux"
+
+- name: Upgrade Debian
+  apt:
+    upgrade: dist
+    update_cache: True
+  when:
+    - common_upgrade_system
+    - ansible_os_family == "Debian"
+
+- name: Install common packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ __common_packages }}"
+
+- name: Install custom packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ common_install_packages }}"
+  when: common_install_packages is defined
+
+- name: Remove custome packages
+  package:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ common_remove_packages }}"
+  when: common_remove_packages is defined

@@ -1,0 +1,43 @@
+
+---
+- name: Creating system groups
+  group:
+    gid: "{{ item.value.gid }}"
+    name: "{{ item.key }}"
+    state: present
+  with_dict: "{{ common_local_groups }}"
+  when: common_local_groups is defined
+
+- name: Provision users
+  user:
+    append: True
+    comment: "{{ item.value.comment| default('Normal user') }}"
+    createhome: True
+    groups: "{{ item.value.groups  }}"
+    name: "{{ item.key }}"
+    shell: /bin/zsh
+    state: present
+  with_dict: "{{ common_local_users }}"
+  when: common_local_users is defined
+
+- name: Add authorized_key to user
+  authorized_key:
+    key: "{{ item.value.authorized_key }}"
+    user: "{{ item.key }}"
+    manage_dir: True
+  when:
+    - item.value.authorized_key is defined
+    - common_local_users is defined
+  with_dict: "{{ common_local_users }}"
+
+- name: Load local environment for users from github.com
+  git:
+    dest: "/home/{{ item.key }}/dots"
+    repo: "{{ item.value.git_repo }}"
+    version: "{{ item.value.git_version|default(HEAD) }}"
+  become_user: "{{ item.key }}"
+  become: True
+  when:
+    - common_local_users is defined
+    - item.value.git_repo is defined
+  with_dict: "{{ common_local_users }}"

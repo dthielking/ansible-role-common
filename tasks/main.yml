@@ -1,0 +1,18 @@
+---
+
+# This role is the main provision role for each server
+
+- name: Include default variables
+  include_vars: "{{ ansible_os_family }}_packages.yml"
+  become: True
+
+- name: Include package manager
+  include: package_manager.yml
+  become: True
+
+- name: Include system services manager
+  include: system_services_manager.yml
+  become: True
+
+- name: Include user group manager
+  include: user_group_manager.yml

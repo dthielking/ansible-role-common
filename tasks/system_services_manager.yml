@@ -1,0 +1,16 @@
+---
+- name: Enable custom services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: True
+  with_items: "{{ common_enable_services }}"
+  when: common_enable_services is defined
+
+- name: Disable custom serviced
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: False
+  with_items: "{{ common_disable_services }}"
+  when: common_disable_services is defined

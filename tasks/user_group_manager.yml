@@ -25,8 +25,8 @@
     user: "{{ item.key }}"
     manage_dir: True
   when:
-    - item.value.authorized_key is defined
     - common_local_users is defined
+    - item.value.authorized_key is defined
   with_dict: "{{ common_local_users }}"
 
 - name: Load local environment for users from github.com

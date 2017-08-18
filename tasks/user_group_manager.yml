@@ -12,9 +12,9 @@
     append: True
     comment: "{{ item.value.comment| default('Normal user') }}"
     createhome: True
-    groups: "{{ item.value.groups  }}"
+    groups: "{{ item.value.groups| default(omit) }}"
     name: "{{ item.key }}"
-    shell: /bin/zsh
+    shell: "{{ item.value.sh| default('/bin/bash') }}"
     state: present
   with_dict: "{{ common_local_users }}"
   when: common_local_users is defined

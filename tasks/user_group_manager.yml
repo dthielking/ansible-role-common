@@ -36,7 +36,6 @@
     repo: "{{ item.value.git_repo }}"
     version: "{{ item.value.git_version|default(HEAD) }}"
   become_user: "{{ item.key }}"
-  become: True
   when:
     - common_local_users is defined
     - item.value.git_repo is defined
